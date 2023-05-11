@@ -1,0 +1,11 @@
+問題 => questionId,domainId, question
+ユーザー =>userId, name, password, (session?) 
+解答 => questionId, answer, explanation
+ドメイン => domainId, domainName
+サマリ => userId, date,questionCount,answerCount
+チェックリスト => level, questionId
+
+
+
+
+

@@ -1,0 +1,10 @@
+create table if not exists users (user_id serial, user_name varchar(15), user_password varchar(15), primary key (user_id));
+create table if not exists questions(question_id serial, domain_id integer, question varchar(600), primary key (question_id)); 
+create table if not exists answers(question_id serial, answer char(1), explanation varchar(600), primary key (question_id));
+create table if not exists domains(question_id serial, domain_id integer, domain_name varchar(150), primary key (question_id)); 
+create table if not exists selections(question_id serial, a varchar(300), b varchar(300), c varchar(300), d varchar(300), primary key (question_id));
+--drop table domains;
+--drop table users;
+--drop table questions;
+--drop table answers;
+--drop table selections;

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taikif App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <div class="main_container">
+        <div class="img_container">
+            <img class="img" th:src="@{/images/AI.png}" alt="推しの子" width="327" height="468">
+            <img class="img_2" th:src="@{/images/AI_2.png}" alt="推しの子" width="327" height="468">
+        </div>
+        <div class="sub_container">
+            <div class="container">
+                <div class="title" style="text-align: center;">
+                    <h1>Taikif App for CISSP</h1>
+                    <div class="marker">
+                    </div>
+                </div>
+                <div style="text-align:left">
+                    <h3 th:text="${questionList.questionId} + '問目'"></h3>
+                </div>
+                <div class="question mb-20" style="text-align: center;">
+                    <p th:text="${questionList.question}">question</p>
+                </div>
+
+                <div class="ansbg" style="margin:10px 0 50px">
+                    <ul class="selectList col1">
+                        <li>
+                            <button class="selectBtn a" id="t" onclick="Answer_Check('A')">A</button>
+                            <span th:text="${selectionList.a}" id="select_a"></span>
+                        </li>
+                        <li>
+                            <button class="selectBtn b" onclick="Answer_Check('B')">B</button>
+                            <span th:text="${selectionList.b}" id="select_b"></span>
+                        </li>
+                        <li>
+                            <button class="selectBtn c" onclick="Answer_Check('C')">C</button>
+                            <span th:text="${selectionList.c}" id="select_c"></span>
+                        </li>
+                        <li>
+                            <button class="selectBtn d" onclick="Answer_Check('D')">D</button>
+                            <span th:text="${selectionList.d}" id="select_d"></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="clear" style="text-align: center;">
+                    <span id="clear"></span>
+                </div>
+
+                <div class="gaugeWrapper mb-20">
+                    <div class="gauge"></div>
+                </div>
+
+                <div id="seikai">
+                    <h3>正解</h3>
+                </div>
+
+                <div class="trueAnswer">
+                    <span id="answer"></span>
+                    <div class="cite" style="margin-left: 2em;">
+                    <span id="cite"></span>
+                    </div>
+                </div>
+                
+                <div id="kaisetsu">
+                    <h3>解説</h3>
+                </div>
+
+                <div class="ansbg_explanation" id="ansbg_explanation">
+                    <span id="explanation"></span>
+                </div>
+                <div class="question_count">
+                    <a class="question_count_a" href="problem.html" th:href="@{/problem(questionId=${answerList.questionId} + 1)}">次の問題</a>
+                </div>
+
+                
+            </div><!--container-->
+
+            <div class="side_container">
+                <h3>過去問題解説</h3>
+                <div>
+                    <ul class="box menu">
+                        <li>
+                            <a href="#" title="ドメイン１">ドメイン１</a>
+                        </li>
+                        <li>
+                            <a href="#" title="ドメイン１">ドメイン２</a>
+                        </li>
+                        <li>
+                            <a href="#" title="ドメイン１">ドメイン３</a>
+                        </li>
+                        <li>
+                            <a href="#" title="ドメイン１">ドメイン４</a>
+                        </li>
+                        <li>
+                            <a href="#" title="ドメイン１">ドメイン５</a>
+                        </li>
+                        <li>
+                            <a href="#" title="ドメイン１">ドメイン６</a>
+                        </li>
+                        <li>
+                            <a href="#" title="ドメイン１">ドメイン７</a>
+                        </li>
+                        <li>
+                            <a href="#" title="ドメイン１">ドメイン８</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="test">
+                    <h3 class="test">セキュリティ情報</h3>
+                    <ul class="box menu">
+                        <li>
+                            <a class="text" href="#" title="chatGPTを利用したPrompt Injection Attack">chatGPTを利用したPrompt Injection Attack</a>
+                        </li>
+                        <li>
+                            <a class="text" href="#" title="RustBacketを用いたMacOSへの攻撃が増加。暗号資産を狙った攻撃か">RustBacketを用いたMacOSへの攻撃が増加。暗号資産を狙った攻撃か</a>
+                        </li>
+                        <li>
+                            <a class="text" href="#" title="「WebLogic」など既知脆弱性3件に対する攻撃に注意喚起 - 米政府">「WebLogic」など既知脆弱性3件に対する攻撃に注意喚起 - 米政府</a>
+                        </li>
+                        <li>
+                            <a class="text" href="#" title="公文書システムで一部ファイルが消失、未テストの新機能で - 新潟県">公文書システムで一部ファイルが消失、未テストの新機能で - 新潟県</a>
+                        </li>
+                        <li>
+                            <a class="text" href="#" title="機械学習管理プラットフォーム「MLflow」に深刻な脆弱性 - 早期更新を">機械学習管理プラットフォーム「MLflow」に深刻な脆弱性 - 早期更新を</a>
+                        </li>
+                        <li>
+                            <a class="text" href="#" title="「Microsoft Edge」の独自修正が明らかに - 約2週前のリリースで">「Microsoft Edge」の独自修正が明らかに - 約2週前のリリースで</a>
+                        </li>
+                    </ul>
+                </div>
+            </div><!--side_container-->
+            <div class="img_container">
+                <img class="img" th:src="@{/images/AI.png}" alt="推しの子" width="327" height="468">
+                <img class="img_2" th:src="@{/images/AI_2.png}" alt="推しの子" width="327" height="468">
+            </div>
+        </div><!--sub_container-->
+    </div><!--main_container-->
+    <canvas id="canvas_answer_front"></canvas>
+
+    <script th:inline="javascript">
+        var answer = /*[[${answerList.answer}]]*/"answer";//答えをjsに渡す
+        var explanation = /*[[${answerList.explanation}]]*/"explanation";//解説をjsに渡す
+        document.getElementById("ansbg_explanation").style.display ="none";
+        document.getElementById("seikai").style.display ="none";
+        document.getElementById("kaisetsu").style.display ="none";
+    </script>
+</body>
+</html>
